@@ -9,6 +9,7 @@ class Question {
   final String difficulty; // easy, medium, hard, elegant
   final String? imageUrl;
   final int starsReward;
+  final int? challengeId; // For daily challenge questions
   final DateTime? createdAt;
 
   Question({
@@ -22,6 +23,7 @@ class Question {
     required this.difficulty,
     this.imageUrl,
     this.starsReward = 2,
+    this.challengeId,
     this.createdAt,
   });
 
@@ -37,6 +39,7 @@ class Question {
       difficulty: json['difficulty'] as String? ?? 'easy',
       imageUrl: json['image_url'] as String?,
       starsReward: json['stars_reward'] as int? ?? 2,
+      challengeId: json['challenge_id'] as int?,
       createdAt: json['created_at'] != null
           ? DateTime.parse(json['created_at'] as String)
           : null,
@@ -55,6 +58,7 @@ class Question {
       'difficulty': difficulty,
       'image_url': imageUrl,
       'stars_reward': starsReward,
+      if (challengeId != null) 'challenge_id': challengeId,
     };
   }
 }
